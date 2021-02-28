@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-
+--test
 entity DE2_70_Basic_Computer is
 port (
 	-- Inputs
