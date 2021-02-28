@@ -31,19 +31,19 @@ port (
 
 	--  Memory (SRAM)
 	SRAM_ADDR			: out std_logic_vector (18 downto 0);
-	SRAM_ADSC_N			: out std_logic;
-	SRAM_ADSP_N			: out std_logic;
-	SRAM_ADV_N			: out std_logic;
-	SRAM_BE_N			: out std_logic_vector (3 downto 0);
-	SRAM_CE1_N			: out std_logic;
-	SRAM_CE2				: out std_logic;
-	SRAM_CE3_N			: out std_logic;
-	SRAM_CLK				: out std_logic;
-	SRAM_GW_N			: out std_logic;
-	SRAM_OE_N			: out std_logic;
-	SRAM_WE_N			: out std_logic;
-	SRAM_DQ				: inout std_logic_vector (31 downto 0);
-	SRAM_DPA				: inout std_logic_vector (3 downto 0);
+	SRAM_ADSC_N			: out std_logic; 						--SRAM Controller Address Status
+	SRAM_ADSP_N			: out std_logic;						--SRAM Processor Address Status
+	SRAM_ADV_N			: out std_logic;						--SRAM Burst Address Advance
+	SRAM_BE_N			: out std_logic_vector (3 downto 0);	--SRAM Byte Write Enable
+	SRAM_CE1_N			: out std_logic;						--SRAM Chip Enable 1
+	SRAM_CE2			: out std_logic;						--SRAM Chip Enable 2
+	SRAM_CE3_N			: out std_logic;						--SRAM Chip Enable 3
+	SRAM_CLK			: out std_logic;						--SRAM Clock
+	SRAM_GW_N			: out std_logic;						--SRAM Global Write Enable
+	SRAM_OE_N			: out std_logic;						--SRAM Output Enable
+	SRAM_WE_N			: out std_logic;						--SRAM Write Enable
+	SRAM_DQ				: inout std_logic_vector (31 downto 0); --SRAM Data
+	SRAM_DPA			: inout std_logic_vector (3 downto 0);  --SRAM Parity Data
 	
 	-- Memory (SDRAM)
 	DRAM0_ADDR			: out std_logic_vector (12 downto 0);
