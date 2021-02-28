@@ -587,6 +587,7 @@ Qsys : component Qsys_System
             sram_WE_N              => SRAM_WE_N,              --           .WE_N
             sram_CLK               => SRAM_CLK,               --           .CLK
 				
+			--TO DO: Figure out what this bridge sram stuff is...
 			bridge_sram_r_address     => SRAMB_Add,     			--				 bridge_sram_r.address
             bridge_sram_r_byte_enable => SRAMB_ByteEnable,		 	--              .byte_enable
             bridge_sram_r_read        => SRAMB_ReadEnable,          --              .read
@@ -641,7 +642,7 @@ Qsys : component Qsys_System
 ----------------------------Camera To GPIO_1---------------------------------
 	D5M_PIXCLK	<= GPIO_CLKIN_N1;
 	GPIO_CLKOUT_N1	<= D5M_XCLKIN;
-   D5M_D(11) <=  GPIO_1(0);
+    D5M_D(11) <=  GPIO_1(0);
 	D5M_D(10) <=  GPIO_1(1);
 	D5M_D(9) <=  GPIO_1(2);
 	D5M_D(8) <=  GPIO_1(3);
@@ -655,7 +656,7 @@ Qsys : component Qsys_System
 	D5M_D(0) <=  GPIO_1(11);
 	D5M_FVAL <=  GPIO_1(18);
 	D5M_LVAL <=  GPIO_1(17);
-	GPIO_1(14) <= D5M_RESET_n;					--Tocheck
+	GPIO_1(14) <= D5M_RESET_n;			--Tocheck
 	GPIO_1(20) <= D5M_SCLK;
 	GPIO_1(19) <= D5M_SDATA;
 	GPIO_1(15) <= D5M_TRIGGER;
@@ -663,16 +664,16 @@ Qsys : component Qsys_System
 ----------------------------End Camera To GPIO_1-------------------------------
 
 ---------------------- Init Camera ---------------------------------	
-	D5M_STROBE <= '0';
+	D5M_STROBE  <= '0';
 	D5M_TRIGGER <= '1';
 	D5M_RESET_n <= RESET; 				----------------- Tocheck	Reset Using Push Button KEY(0)
-	D5M_XCLKIN <= Clk_96; 				----------------- Tocheck 96MHz to drive the Camera
-	D5M_RESET <= not D5M_RESET_n;
+	D5M_XCLKIN  <= Clk_96; 				----------------- Tocheck 96MHz to drive the Camera
+	D5M_RESET   <= not D5M_RESET_n;
 	
 ----------------------- GPIO_0 To LCD -------------------------------
 	adc_penirq_n		<= GPIO_CLKIN_N0;
-	adc_dout				<= GPIO_1(0);
-	adc_busy				<= GPIO_CLKIN_P0;
+	adc_dout			<= GPIO_1(0);
+	adc_busy			<= GPIO_CLKIN_P0;
 	GPIO_0(1)			<= adc_din;
 	GPIO_0(2)			<= adc_ltm_sclk;
 	GPIO_0(3)			<= LTM_B(3);
@@ -708,8 +709,8 @@ Qsys : component Qsys_System
 	GPIO_0(31)			<= LTM_sda;
 	
 	adc_ltm_sclk	<= (adc_dclk and ltm_3wirebusy_n) or (not(ltm_3wirebusy_n) and ltm_sclk);
-	LTM_nclk <=clk_25;							-- 25 MHz To Drive the LCD
-	LTM_Grst <=RESET;								-- Use Push Button '0' to reset the LCD
+	LTM_nclk 	    <=clk_25;							-- 25 MHz To Drive the LCD
+	LTM_Grst        <=RESET;							-- Use Push Button '0' to reset the LCD
 ----------------------------End LCD To GPIO_0-------------------------------	
 
 ------------------------------ SDRAM_Controller to SDRAM Chip------------------------------
