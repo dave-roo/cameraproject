@@ -26,8 +26,8 @@ port (
 	LEDG				: out std_logic_vector (8 downto 0);
 	LEDR				: out std_logic_vector (17 downto 0);
 
-	HEX0				: out std_logic_vector (7 downto 0);
-	HEX1				: out std_logic_vector (7 downto 0);
+	HEX0				: out std_logic_vector (7 downto 0);    
+	HEX1				: out std_logic_vector (7 downto 0);	--SETTING HD/SD
 
 	--  Memory (SRAM)
 	SRAM_ADDR			: out std_logic_vector (18 downto 0);
@@ -84,8 +84,8 @@ signal			clk_96		: std_logic;								--	Clock of the Camera from the Clock Bridg
 
 
 --------------------------------Signals to Recieve Camera's Pins Through GPIO_1----------------
-signal 			D5M_PIXCLK 	: std_logic;								--Pixel Clock (Output) == 1 XCLKIN
-signal			D5M_XCLKIN 	: std_logic;								--External Input Clock (96Mhz)	
+signal 		   D5M_PIXCLK 	: std_logic;								--Pixel Clock (Output) == 1 XCLKIN
+signal		   D5M_XCLKIN 	: std_logic;								--External Input Clock (96Mhz)	
 signal         D5M_STROBE 	: std_logic;								-- Snapchot Strobe (Output)
 signal         D5M_TRIGGER  : std_logic;								-- Snapshot Trigger (Input)
 signal         D5M_FVAL 	: std_logic;								-- Frame Valid
@@ -219,7 +219,7 @@ component Qsys_System is
 			camera_pixel_clk_reset : in    std_logic                     := 'X';             -- pixel_clk_reset
 			camera_PIXEL_DATA      : in    std_logic_vector(11 downto 0) := (others => 'X'); -- PIXEL_DATA
 			camera_config_SDAT     : inout std_logic                     := 'X';             -- SDAT
-         camera_config_SCLK   	   : out   std_logic;                                        -- SCLK
+			camera_config_SCLK   	   : out   std_logic;                                        -- SCLK
 			
 			sram_DQ                : inout std_logic_vector(31 downto 0) := (others => 'X'); -- DQ
 			sram_DPA               : inout std_logic_vector(3 downto 0)  := (others => 'X'); -- DPA
@@ -236,7 +236,7 @@ component Qsys_System is
 			sram_WE_N              : out   std_logic;                                        -- WE_N
 			sram_CLK               : out   std_logic;                                        -- CLK
 			
-			bridge_sram_r_address  : in    std_logic_vector(27 downto 0) := (others => 'X'); -- address
+	     bridge_sram_r_address  : in    std_logic_vector(27 downto 0) := (others => 'X'); -- address
          bridge_sram_r_byte_enable : in    std_logic                     := 'X';             -- byte_enable
          bridge_sram_r_read        : in    std_logic                     := 'X';             -- read
          bridge_sram_r_write       : in    std_logic                     := 'X';             -- write
@@ -571,7 +571,7 @@ Qsys : component Qsys_System
             camera_PIXEL_DATA      => D5M_D,      									--           .PIXEL_DATA
 			camera_config_SDAT     => D5M_SDATA,     								-- camera_config.SDAT
             camera_config_SCLK     => D5M_SCLK,    									--              .SCLK
-				
+
 			sram_DQ                => SRAM_DQ,     	          --     	    sram.DQ
             sram_DPA               => SRAM_DPA,               --           .DPA
             sram_ADDR              => SRAM_ADDR,              --           .ADDR
@@ -588,13 +588,13 @@ Qsys : component Qsys_System
             sram_CLK               => SRAM_CLK,               --           .CLK
 				
 			--TO DO: Figure out what this bridge sram stuff is...
-			bridge_sram_r_address     => SRAMB_Add,     			--				 bridge_sram_r.address
-            bridge_sram_r_byte_enable => SRAMB_ByteEnable,		 	--              .byte_enable
-            bridge_sram_r_read        => SRAMB_ReadEnable,          --              .read
-            bridge_sram_r_write       => SRAMB_WriteEnable,         --              .write
-            bridge_sram_r_write_data  => SRAMB_WriteData,  			--              .write_data
-            bridge_sram_r_acknowledge => SRAMB_ACK,  				--              .acknowledge
-            bridge_sram_r_read_data   => SRAMB_ReadData,   			--              .read_data
+			bridge_sram_r_address     => SRAMB_Add,     			--	   		    bridge_sram_r.address
+            bridge_sram_r_byte_enable => SRAMB_ByteEnable,		 	--             .byte_enable
+            bridge_sram_r_read        => SRAMB_ReadEnable,          --             .read
+            bridge_sram_r_write       => SRAMB_WriteEnable,         --             .write
+            bridge_sram_r_write_data  => SRAMB_WriteData,  			--             .write_data
+            bridge_sram_r_acknowledge => SRAMB_ACK,  				--             .acknowledge
+            bridge_sram_r_read_data   => SRAMB_ReadData,   			--             .read_data
 				
             bridge_dram_w_address     => DRAMB_Add,     		    -- 			    bridge_dram_w.address
             bridge_dram_w_byte_enable => DRAMB_ByteEnable, 		    --			   .byte_enable
